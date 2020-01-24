@@ -1,0 +1,20 @@
+Home Page:
+
+<%= @message %>
+
+<% @posts.each do |post| %>
+  <h1> <%= post.title %> </h1>
+  <h2> <%= post.author.name %> </h2>
+  <p> <%= post.body %>
+
+  <br>
+
+  <p> 
+    <%= link_to "Like", increment_async_path(post_id: post.id), method: :post %>
+
+    Likes:
+    <%= post.likes_count %> 
+  </p>
+<% end %>
+
+<h1> Updated via CodeBuild! <h1>

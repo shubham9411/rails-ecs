@@ -10,8 +10,6 @@ RUN npm install -g yarn
 RUN mkdir /myapp
 WORKDIR /myapp
 
-ENV RAILS_ENV='production'
-
 # Copy the Gemfile and Gemfile.lock from app root directory into the /myapp/ folder in the docker container
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock

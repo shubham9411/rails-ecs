@@ -10,17 +10,19 @@ RUN npm install -g yarn
 RUN mkdir /myapp
 WORKDIR /myapp
 
+ENV RAILS_ENV='production'
+
 # Copy the Gemfile and Gemfile.lock from app root directory into the /myapp/ folder in the docker container
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 
 # Run bundle install to install gems inside the gemfile
-RUN gem install bundler && bundle install
+RUN gem install bundler
+RUN bundle install
 
-COPY package.json package.json
+COPY package.json /myapp/package.json
+COPY yarn.lock /myapp/yarn.lock
 RUN yarn install --check-files
-
-ENV RAILS_ENV='production'
 
 # Copy the whole app
 COPY . /myapp
